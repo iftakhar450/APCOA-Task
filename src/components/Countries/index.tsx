@@ -4,9 +4,13 @@ import { useGetContries } from "../../hooks/useContries";
 import AllCountries from "./AllCountries";
 import { SearchBar } from "../SearchBar";
 
+const BASE_URL = "https://restcountries.com/v3.1"
+
 const Countries = () => {
 
-    const [url, setUrl] = useState("https://restcountries.com/v3.1/all")
+
+
+    const [url, setUrl] = useState(`${BASE_URL}/all`)
     const { isLoading, data, error } = useGetContries(url);
 
     if (isLoading) {
@@ -17,9 +21,9 @@ const Countries = () => {
     }
     const handleInputChange = (value: string) => {
         if (value.length > 0) {
-            setUrl(`https://restcountries.com/v3.1/name/${value}`)
+            setUrl(`${BASE_URL}/name/${value}`)
         }
-        if(value.length === 0 ) setUrl(`https://restcountries.com/v3.1/all`)
+        if (value.length === 0) setUrl(`${BASE_URL}/all`)
     }
 
     return (<div className="w-full h-full gap-2 flex flex-wrap overflow-auto">
@@ -29,7 +33,7 @@ const Countries = () => {
             <AllCountries data={data} />
         </div>
         <div className="w-[200px] text-center">
-            <h1>Fav  Countries</h1>
+            <h1>Favourite  Countries</h1>
             <FavCountries data={data} />
         </div>
     </div>)

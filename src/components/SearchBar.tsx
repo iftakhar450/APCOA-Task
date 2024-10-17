@@ -8,7 +8,7 @@ export const SearchBar = ({ onValueChange }: SearchbarProps) => {
     useEffect(() => {
         const timer = setTimeout(() => {
             onValueChange(inputValue);
-        }, 500);
+        }, 300);
         return () => {
             clearTimeout(timer);
         };
